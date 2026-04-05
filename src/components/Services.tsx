@@ -1,70 +1,85 @@
 import { motion } from 'motion/react';
-import { Home, Gavel, Building2, Briefcase, ChevronRight } from 'lucide-react';
+import { Home, Gavel, Building2, Briefcase, ArrowRight } from 'lucide-react';
 
 const services = [
   {
     title: 'Αστικό Δίκαιο',
     description: 'Οικογενειακό, Κληρονομικό, Ενοχικό Δίκαιο. Διαζύγια, διατροφές, επιμέλεια τέκνων, αποδοχές κληρονομιάς και διεκδικήσεις.',
     icon: Home,
-    color: 'bg-blue-50 text-blue-600',
+    number: '01',
   },
   {
     title: 'Ποινικό Δίκαιο',
     description: 'Εκπροσώπηση σε όλα τα στάδια της ποινικής διαδικασίας. Υπεράσπιση σε δικαστήρια, σύνταξη μηνύσεων και υπομνημάτων.',
     icon: Gavel,
-    color: 'bg-red-50 text-red-600',
+    number: '02',
   },
   {
     title: 'Ακίνητα & Real Estate',
     description: 'Έλεγχος τίτλων στο Υποθηκοφυλακείο και Κτηματολόγιο. Σύνταξη συμβολαίων, αγοραπωλησίες και μισθωτικές διαφορές.',
     icon: Building2,
-    color: 'bg-amber-50 text-amber-600',
+    number: '03',
   },
   {
     title: 'Εμπορικό & Εταιρικό Δίκαιο',
     description: 'Σύσταση εταιρειών, νομική υποστήριξη επιχειρήσεων, εμπορικές συμβάσεις και διεκδίκηση απαιτήσεων.',
     icon: Briefcase,
-    color: 'bg-emerald-50 text-emerald-600',
+    number: '04',
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-4 md:px-8 bg-gray-50">
+    <section id="services" className="py-32 px-4 md:px-8 bg-white border-y border-gray-100">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">Οι Υπηρεσίες μας</span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-6">Τομείς Δικαίου</h2>
-          <div className="w-24 h-1 bg-accent mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Παρέχουμε ολοκληρωμένες νομικές υπηρεσίες σε ένα ευρύ φάσμα δικαίου, με εξειδίκευση και αφοσίωση στην επίτευξη των στόχων σας.
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+          <div className="max-w-2xl">
+            <span className="text-accent font-sans font-bold tracking-[0.4em] uppercase text-xs mb-6 block">Εξειδίκευση</span>
+            <h2 className="text-4xl md:text-6xl font-display font-medium text-primary leading-tight">
+              Τομείς <span className="italic font-serif">Νομικής Δράσης</span>
+            </h2>
+          </div>
+          <p className="text-lg text-slate-500 font-light max-w-md leading-relaxed">
+            Παρέχουμε ολοκληρωμένες νομικές υπηρεσίες με εξειδίκευση και αφοσίωση στην επίτευξη των στόχων σας.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-3xl">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all group border border-gray-100 flex flex-col h-full"
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              className="bg-white p-12 group hover:bg-primary transition-colors duration-500 relative overflow-hidden"
             >
-              <div className={`w-16 h-16 ${service.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                <service.icon className="w-8 h-8" />
+              {/* Background Number */}
+              <div className="absolute top-8 right-12 text-8xl font-display font-bold text-gray-50 group-hover:text-white/5 transition-colors duration-500 select-none">
+                {service.number}
               </div>
-              <h3 className="text-xl font-bold text-primary mb-4 font-serif">{service.title}</h3>
-              <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
-                {service.description}
-              </p>
-              <a 
-                href="#contact" 
-                className="flex items-center gap-2 text-accent font-bold hover:gap-3 transition-all"
-              >
-                Μάθετε Περισσότερα
-                <ChevronRight className="w-4 h-4" />
-              </a>
+
+              <div className="relative z-10">
+                <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-accent transition-colors duration-500">
+                  <service.icon className="w-6 h-6 text-accent group-hover:text-white transition-colors duration-500" />
+                </div>
+                
+                <h3 className="text-2xl font-display font-bold text-primary mb-6 group-hover:text-white transition-colors duration-500">
+                  {service.title}
+                </h3>
+                
+                <p className="text-slate-600 mb-10 leading-relaxed group-hover:text-gray-300 transition-colors duration-500 font-light">
+                  {service.description}
+                </p>
+                
+                <a 
+                  href="#contact" 
+                  className="inline-flex items-center gap-3 text-accent font-sans font-bold text-sm uppercase tracking-widest group-hover:text-white transition-all"
+                >
+                  Λεπτομέρειες
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>

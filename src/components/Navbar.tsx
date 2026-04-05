@@ -24,38 +24,41 @@ export default function Navbar() {
   return (
     <nav 
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 px-4 md:px-8 py-4 bg-white shadow-md",
-        isScrolled ? "py-3 shadow-lg" : "py-5"
+        "sticky top-0 z-50 w-full transition-all duration-500 px-4 md:px-8",
+        isScrolled ? "py-4 bg-white/90 backdrop-blur-md shadow-sm" : "py-8 bg-paper"
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="flex flex-col">
-          <span className="text-xl md:text-2xl font-serif font-bold text-primary leading-tight">
+        <div className="flex flex-col group cursor-pointer">
+          <span className="text-xl md:text-2xl font-display font-bold text-primary leading-none tracking-tight">
             ΦΑΝΗ ΣΤΑΜΑΤΑ Π. ΛΑΖΑΡΑΚΟΥ
           </span>
-          <span className="text-xs md:text-sm font-sans tracking-widest text-accent font-semibold uppercase">
-            ΔΙΚΗΓΟΡΟΣ & ΣΥΝΕΡΓΑΤΕΣ
-          </span>
+          <div className="flex items-center gap-2 mt-1">
+            <div className="h-[1px] w-4 bg-accent transition-all group-hover:w-8"></div>
+            <span className="text-[10px] md:text-[11px] font-sans tracking-[0.4em] text-accent font-bold uppercase">
+              ΔΙΚΗΓΟΡΟΣ & ΣΥΝΕΡΓΑΤΕΣ
+            </span>
+          </div>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-12">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-primary font-medium hover:text-accent transition-colors relative group"
+              className="text-xs font-sans font-bold uppercase tracking-[0.2em] text-primary/70 hover:text-accent transition-colors relative group"
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </div>
 
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden text-primary p-2"
+          className="md:hidden text-primary p-2 hover:bg-gray-100 rounded-full transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -64,13 +67,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 py-4 animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="flex flex-col gap-4 px-6">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 py-8 animate-in fade-in slide-in-from-top-4 duration-500">
+          <div className="flex flex-col gap-6 px-8">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-primary font-medium text-lg py-2 border-b border-gray-50 last:border-0"
+                className="text-primary font-display font-bold text-2xl py-2 border-b border-gray-50 last:border-0 hover:text-accent transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
